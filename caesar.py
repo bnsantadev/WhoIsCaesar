@@ -16,31 +16,49 @@ def Banner():
 
 def caesar(text, shift, mode, language):
     result = ""
-    text = text.upper()
     shiftInt = int(shift)
     arrayText = list(text)
 
     for harf in arrayText:
         if language == "tr":
-            if harf in turkishAlphabet:
-                index = turkishAlphabet.index(harf)
-                if mode == "encrypt":
-                    newIndex = (index + shiftInt) % len(turkishAlphabet)
-                    result += turkishAlphabet[newIndex]
-                elif mode == "decrypt":
-                    newIndex = (index - shiftInt) % len(turkishAlphabet)
-                    result += turkishAlphabet[newIndex]
+            if harf.upper() in turkishAlphabet:
+                if harf == harf.upper():
+                    index = turkishAlphabet.index(harf.upper())
+                    if mode == "encrypt":
+                        newIndex = (index + shiftInt) % len(turkishAlphabet)
+                        result += turkishAlphabet[newIndex].upper()
+                    elif mode == "decrypt":
+                        newIndex = (index - shiftInt) % len(turkishAlphabet)
+                        result += turkishAlphabet[newIndex].upper()
+                elif harf == harf.lower():
+                    index = turkishAlphabet.index(harf.upper())
+                    if mode == "encrypt":
+                        newIndex = (index + shiftInt) % len(turkishAlphabet)
+                        result += turkishAlphabet[newIndex].lower()
+                    elif mode == "decrypt":
+                        newIndex = (index - shiftInt) % len(turkishAlphabet)
+                        result += turkishAlphabet[newIndex].lower()
             else:
                 result += harf
+                
         elif language == "en":
-            if harf in englishAlphabet:
-                index = englishAlphabet.index(harf)
-                if mode == "encrypt":
-                    newIndex = (index + shiftInt) % len(englishAlphabet)
-                    result += englishAlphabet[newIndex]
-                elif mode == "decrypt":
-                    newIndex = (index - shiftInt) % len(englishAlphabet)
-                    result += englishAlphabet[newIndex]
+            if harf.upper() in englishAlphabet:
+                if harf == harf.upper():
+                    index = englishAlphabet.index(harf.upper())
+                    if mode == "encrypt":
+                        newIndex = (index + shiftInt) % len(englishAlphabet)
+                        result += englishAlphabet[newIndex].upper()
+                    elif mode == "decrypt":
+                        newIndex = (index - shiftInt) % len(englishAlphabet)
+                        result += englishAlphabet[newIndex].upper()
+                elif harf == harf.lower():
+                    index = englishAlphabet.index(harf.upper())
+                    if mode == "encrypt":
+                        newIndex = (index + shiftInt) % len(englishAlphabet)
+                        result += englishAlphabet[newIndex].lower()
+                    elif mode == "decrypt":
+                        newIndex = (index - shiftInt) % len(englishAlphabet)
+                        result += englishAlphabet[newIndex].lower()
             else:
                 result += harf
         else:
