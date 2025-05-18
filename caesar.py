@@ -69,21 +69,24 @@ def caesar(text, shift, mode, language):
 
 Banner()
 while True:
-    option = input("1-Şifreleme\n2-Çözümleme\n>>")
+    option = input("1-Şifreleme\n2-Çözümleme\n99-Çıkış\n>>")
 
     if option == "1":
         text = input(">>Şifrelemek istediğiniz text'i yazınız : ")
         shift = input(">>Kaç harf kaydırılacak : ")
         language = input(">>Dil seçiniz (en, tr) : ")
         encrypted = caesar(text, shift, mode="encrypt", language=language)
-        print(f"Şifrelenmiş text : {encrypted}")
+        print(f"[ + ] Şifrelenmiş text : {encrypted}")
 
     elif option == "2":
         text = input("Çözümlemek istediğiniz text'i yazınız: ")
         shift = input("Kaç harf kaydırılacak : ")
         language = input(">>Dil seçiniz (en, tr) : ")
         decrypted = caesar(text, shift, mode="decrypt", language=language)
-        print(f"Çözümlenmiş text : {decrypted}")
+        print(f"[ + ] Çözümlenmiş text : {decrypted}")
 
+    elif option == "99":
+        exit()
+    
     else:
-        print("Geçersiz seçenek!!!")
+        print("[ ! ] Geçersiz seçenek!!!")
