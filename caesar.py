@@ -1,5 +1,6 @@
 turkishAlphabet = ["A", "B", "C", "Ç", "D", "E", "F", "G", "Ğ", "H", "I", "İ", "J", "K", "L", "M", "N", "O", "Ö", "P", "R", "S", "Ş", "T", "U", "Ü", "V", "Y", "Z"]
 englishAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 def Banner():
     ascii_art = """
@@ -38,6 +39,14 @@ def caesar(text, shift, mode, language):
                     elif mode == "decrypt":
                         newIndex = (index - shiftInt) % len(turkishAlphabet)
                         result += turkishAlphabet[newIndex].lower()
+            elif harf in numbers:
+                tempNumberIndex = numbers.index(harf)
+                if mode == "encrypt":
+                    newNumberIndex = (tempNumberIndex + shiftInt) % len(numbers)
+                    result += numbers[newNumberIndex]
+                elif mode == "decrypt":
+                    newNumberIndex = (tempNumberIndex - shiftInt) % len(numbers)
+                    result += numbers[newNumberIndex]
             else:
                 result += harf
                 
@@ -59,6 +68,16 @@ def caesar(text, shift, mode, language):
                     elif mode == "decrypt":
                         newIndex = (index - shiftInt) % len(englishAlphabet)
                         result += englishAlphabet[newIndex].lower()
+            
+            elif harf in numbers:
+                tempNumberIndex = numbers.index(harf)
+                if mode == "encrypt":
+                    newNumberIndex = (tempNumberIndex + shiftInt) % len(numbers)
+                    result += numbers[newNumberIndex]
+                elif mode == "decrypt":
+                    newNumberIndex = (tempNumberIndex - shiftInt) % len(numbers)
+                    result += numbers[newNumberIndex]
+            
             else:
                 result += harf
         else:
@@ -79,8 +98,8 @@ while True:
         print(f"[ + ] Şifrelenmiş text : {encrypted}")
 
     elif option == "2":
-        text = input("Çözümlemek istediğiniz text'i yazınız: ")
-        shift = input("Kaç harf kaydırılacak : ")
+        text = input(">>Çözümlemek istediğiniz text'i yazınız: ")
+        shift = input(">>Kaç harf kaydırılacak : ")
         language = input(">>Dil seçiniz (en, tr) : ")
         decrypted = caesar(text, shift, mode="decrypt", language=language)
         print(f"[ + ] Çözümlenmiş text : {decrypted}")
