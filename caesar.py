@@ -14,6 +14,34 @@ def Banner():
     """
     print(ascii_art)
 
+def bruteforce(encryptedText, lang):
+    if lang == "tr":
+        alphabet = turkishAlphabet
+    elif lang == "en":
+        alphabet = englishAlphabet
+    else:
+        print("Geçersiz dil seçimi!")
+        return
+
+    for i in range(1, len(alphabet)):
+        arrayText = list(encryptedText)
+        result = ""
+        for harf in arrayText:
+            if harf.upper() in alphabet:
+                index = alphabet.index(harf.upper())
+                newIndex = (index - i) % len(alphabet)
+                if harf.isupper():
+                    result += alphabet[newIndex].upper()
+                else:
+                    result += alphabet[newIndex].lower()
+            elif harf in numbers:
+                numberIndex = numbers.index(harf)
+                newNumberIndex = (numberIndex - i) % len(numbers)
+                result += numbers[newNumberIndex]
+            else:
+                result += harf
+        print(f"[{i}] >> {result}")
+            
 
 def caesar(text, shift, mode, language):
     result = ""
@@ -92,17 +120,23 @@ while True:
 
     if option == "1":
         text = input(">>Şifrelemek istediğiniz text'i yazınız : ")
-        shift = input(">>Kaç harf kaydırılacak : ")
         language = input(">>Dil seçiniz (en, tr) : ")
+        shift = input(">>Kaç harf kaydırılacak : ")
         encrypted = caesar(text, shift, mode="encrypt", language=language)
         print(f"[ + ] Şifrelenmiş text : {encrypted}")
 
     elif option == "2":
-        text = input(">>Çözümlemek istediğiniz text'i yazınız: ")
-        shift = input(">>Kaç harf kaydırılacak : ")
+        text = input(">>Çözümlemek istediğiniz text'i yazınız : ")
         language = input(">>Dil seçiniz (en, tr) : ")
-        decrypted = caesar(text, shift, mode="decrypt", language=language)
-        print(f"[ + ] Çözümlenmiş text : {decrypted}")
+        mode = input("BruteForce mu yoksa normal modda çözümlemek istersiniz (bf, normal): ")
+        if mode == "bf":
+            bruteforce(text, language)
+        elif mode == "normal":
+            shift = input(">>Kaç harf kaydırılacak : ")
+            decrypted = caesar(text, shift, mode="decrypt", language=language)
+            print(f"[ + ] Çözümlenmiş text : {decrypted}")
+        else:
+            print(">>Geçersiz Seçenek!!")
 
     elif option == "99":
         exit()
