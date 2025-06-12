@@ -123,12 +123,12 @@ while True:
         language = input(">>Dil seçiniz (en, tr) : ")
         shift = input(">>Kaç harf kaydırılacak : ")
         encrypted = caesar(text, shift, mode="encrypt", language=language)
-        print(f"[ + ] Şifrelenmiş text : {encrypted}")
+        print(f"[+] Şifrelenmiş text : {encrypted}")
 
     elif option == "2":
         text = input(">>Çözümlemek istediğiniz text'i yazınız : ")
         language = input(">>Dil seçiniz (en, tr) : ")
-        mode = input("BruteForce mu yoksa normal modda çözümlemek istersiniz (bf, normal): ")
+        mode = input("BruteForce mu yoksa normal modda mı çözümlemek istersiniz (bf, normal): ")
         if mode == "bf":
             bruteforce(text, language)
         elif mode == "normal":
